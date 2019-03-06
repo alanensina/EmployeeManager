@@ -6,10 +6,10 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "CARGOS")
+@Table
 public class Cargo extends AbstractEntity<Long> {
 
-	@Column(name = "NOME", nullable = false, unique = true, length = 60)
+	@Column(nullable = false, unique = true, length = 60)
 	private String nome;
 
 	@ManyToOne

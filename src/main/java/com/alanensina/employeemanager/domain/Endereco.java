@@ -4,26 +4,26 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "ENDERECOS")
+@Table
 public class Endereco extends AbstractEntity<Long> {
 
-	@Column(name = "LOGRADOURO", nullable = false)
+	@Column(nullable = false)
 	private String logradouro;
 	
-	@Column(name = "BAIRRO", nullable = false)
+	@Column(nullable = false)
 	private String bairro;
 	
-	@Column(name = "CIDADE", nullable = false)
+	@Column(nullable = false)
 	private String cidade;
 	
-	@Column(name = "UF", nullable = false, length = 2)
+	@Column(nullable = false, length = 2)
 	@Enumerated(EnumType.STRING)
 	private UF uf;
 	
-	@Column(name = "CEP", nullable = false, length = 9)
+	@Column(nullable = false, length = 9)
 	private String cep;
 	
-	@Column(name = "NUMERO", nullable = false, length = 5)
+	@Column(nullable = false, length = 5)
 	private Integer numero;
 	
 	private String complemento; // Por ser um campo opcional, não há a necessidade de fazer o mapeamento com a anotação @Column

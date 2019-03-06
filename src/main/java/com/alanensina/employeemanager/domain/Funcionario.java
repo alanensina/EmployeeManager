@@ -7,19 +7,19 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "FUNCIONARIOS")
+@Table
 public class Funcionario extends AbstractEntity<Long> {
 
-	@Column(name = "NOME", nullable = false, unique = true)
+	@Column(nullable = false, unique = true)
 	private String nome;
 	
-	@Column(name = "SALARIO", nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
+	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal salario;
 	
-	@Column(name = "DATA_ENTRADA", nullable = false, columnDefinition = "DATE")
+	@Column(nullable = false, columnDefinition = "DATE")
 	private LocalDate dtEntrada;
 	
-	@Column(name = "DATA_SAIDA", columnDefinition = "DATE")
+	@Column(columnDefinition = "DATE")
 	private LocalDate dtSaida;
 	
 	@OneToOne(cascade = CascadeType.ALL) // Ao cadastrar/excluir um funcionário, será cadastrado/excluído seu endereço também
