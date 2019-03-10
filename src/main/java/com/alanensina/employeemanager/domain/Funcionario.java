@@ -17,10 +17,10 @@ public class Funcionario extends AbstractEntity<Long> {
 	private BigDecimal salario;
 	
 	@Column(nullable = false, columnDefinition = "DATE")
-	private LocalDate dtEntrada;
+	private LocalDate dataEntrada;
 	
 	@Column(columnDefinition = "DATE")
-	private LocalDate dtSaida;
+	private LocalDate dataSaida;
 	
 	@OneToOne(cascade = CascadeType.ALL) // Ao cadastrar/excluir um funcionário, será cadastrado/excluído seu endereço também
 	@JoinColumn(name = "ID_ENDERECO_FK")
@@ -47,19 +47,19 @@ public class Funcionario extends AbstractEntity<Long> {
 	}
 
 	public LocalDate getDtEntrada() {
-		return dtEntrada;
+		return dataEntrada;
 	}
 
 	public void setDtEntrada(LocalDate dtEntrada) {
-		this.dtEntrada = dtEntrada;
+		this.dataEntrada = dtEntrada;
 	}
 
 	public LocalDate getDtSaida() {
-		return dtSaida;
+		return dataSaida;
 	}
 
 	public void setDtSaida(LocalDate dtSaida) {
-		this.dtSaida = dtSaida;
+		this.dataSaida = dtSaida;
 	}
 
 	public Endereco getEndereco() {
