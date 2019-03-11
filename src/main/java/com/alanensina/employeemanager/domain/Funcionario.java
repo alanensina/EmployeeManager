@@ -3,7 +3,18 @@ package com.alanensina.employeemanager.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
 
 @SuppressWarnings("serial")
 @Entity
@@ -13,21 +24,24 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal salario;
 	
-	@Column(nullable = false, columnDefinition = "DATE")
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name= "data_entrada", nullable = false, columnDefinition = "DATE")
 	private LocalDate dataEntrada;
 	
-	@Column(columnDefinition = "DATE")
+	@DateTimeFormat(iso = ISO.DATE)
+	@Column(name = "data_saida", columnDefinition = "DATE")
 	private LocalDate dataSaida;
 	
-	@OneToOne(cascade = CascadeType.ALL) // Ao cadastrar/excluir um funcionário, será cadastrado/excluído seu endereço também
-	@JoinColumn(name = "ID_ENDERECO_FK")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id_fk")
 	private Endereco endereco;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_CARGO_FK")
+	@JoinColumn(name = "cargo_id_fk")
 	private Cargo cargo;
 
 	public String getNome() {
@@ -46,20 +60,20 @@ public class Funcionario extends AbstractEntity<Long> {
 		this.salario = salario;
 	}
 
-	public LocalDate getDtEntrada() {
+	public LocalDate getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDtEntrada(LocalDate dtEntrada) {
-		this.dataEntrada = dtEntrada;
+	public void setDataEntrada(LocalDate dataEntrada) {
+		this.dataEntrada = dataEntrada;
 	}
 
-	public LocalDate getDtSaida() {
+	public LocalDate getDataSaida() {
 		return dataSaida;
 	}
 
-	public void setDtSaida(LocalDate dtSaida) {
-		this.dataSaida = dtSaida;
+	public void setDataSaida(LocalDate dataSaida) {
+		this.dataSaida = dataSaida;
 	}
 
 	public Endereco getEndereco() {
