@@ -1,6 +1,12 @@
 package com.alanensina.employeemanager.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
@@ -18,14 +24,18 @@ public class Endereco extends AbstractEntity<Long> {
 	
 	@Column(nullable = false, length = 2)
 	@Enumerated(EnumType.STRING)
+	@NotNull(message = "{NotNull.endereco.uf}") // Mensagens estão no arquivo ValidationMessages.properties
 	private UF uf;
 	
 	@Column(nullable = false, length = 9)
+	@Size(min = 9, max = 9, message = "{Size.endereco.cep}") // Mensagens estão no arquivo ValidationMessages.properties
 	private String cep;
 	
+	@NotNull(message = "{NotNull.endereco.numero}") // Mensagens estão no arquivo ValidationMessages.properties
 	@Column(nullable = false, length = 5)
 	private Integer numero;
 	
+	@Size(max = 255)
 	private String complemento; // Por ser um campo opcional, não há a necessidade de fazer o mapeamento com a anotação @Column
 
 	public String getLogradouro() {

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -30,6 +32,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name= "data_entrada", nullable = false, columnDefinition = "DATE")
+	@PastOrPresent(message = "{PastOrPresent.funcionario.dataEntrada}") // Mensagens estão no arquivo ValidationMessages.properties
 	private LocalDate dataEntrada;
 	
 	@DateTimeFormat(iso = ISO.DATE)
@@ -42,6 +45,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	
 	@ManyToOne
 	@JoinColumn(name = "cargo_id_fk")
+	@NotNull(message = "{NotNull.funcionario.cargo}") // Mensagens estão no arquivo ValidationMessages.properties
 	private Cargo cargo;
 
 	public String getNome() {
