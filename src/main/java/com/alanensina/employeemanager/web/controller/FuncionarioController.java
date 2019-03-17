@@ -10,7 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,7 @@ import com.alanensina.employeemanager.domain.Funcionario;
 import com.alanensina.employeemanager.domain.UF;
 import com.alanensina.employeemanager.service.CargoService;
 import com.alanensina.employeemanager.service.FuncionarioService;
+import com.alanensina.employeemanager.web.validator.FuncionarioValidator;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -33,6 +36,11 @@ public class FuncionarioController {
 	@Autowired
 	private CargoService cargoService;
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new FuncionarioValidator());
+	}
+	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
 		return "/funcionario/cadastro";
@@ -69,7 +77,7 @@ public class FuncionarioController {
 		}
 
 		funcionarioService.editar(funcionario);
-		attr.addFlashAttribute("succes", "Funcionário editado com sucesso.");
+		attr.addFlashAttribute("success", "Funcionário editado com sucesso.");
 
 		return "redirect:/funcionarios/cadastrar";
 	}
