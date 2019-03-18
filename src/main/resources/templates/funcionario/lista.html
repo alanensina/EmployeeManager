@@ -41,7 +41,7 @@
 	                            <form class="form-inline" method="GET" th:action="@{/funcionarios/buscar/nome}">
 	                                <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
 	                                       th:name="nome" />
-	                                <button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
+	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
 	
@@ -58,7 +58,7 @@
 	                                    <option value="">Cargo</option>
 	                                    <option th:each="c : ${cargos}" th:value="${c.id}" th:text="${c.nome}">Auxiliar Contábil</option>
 	                                </select>
-	                                <button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
+	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
 	
@@ -75,7 +75,7 @@
 	                                       th:name="entrada" />
 	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
 	                                       th:name="saida" />
-	                                <button class="btn btn-outline-success my-2 my-sm-0">Buscar</button>
+	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
 	
@@ -97,8 +97,8 @@
 	                        <th>Departamento</th>
 	                        <th>Cargo</th>
 	                        <th>Endereço</th>
-	                        <th>Data de Entrada</th>
-	                        <th>Data de Saída</th>
+	                        <th>Admissão</th>
+	                        <th>Desligamento</th>
 	                        <th>Ação</th>
 	                    </tr>
 	                    </thead>
@@ -125,8 +125,8 @@
 		                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
 		                            </button>
 		                        </td>
-		                        <td th:text="${#temporals.format(f.dataEntrada, 'dd/MM/yyyy')}">2017/08/14</td>
-		                        <td th:text="${#temporals.format(f.dataSaida, 'dd/MM/yyyy')}">02/03/2015</td>
+		                        <td th:text="${#temporals.format(f.dataEntrada, 'dd/MM/yyyy')}">Admissão</td>
+		                        <td th:text="${#temporals.format(f.dataSaida, 'dd/MM/yyyy')}">Desligamento</td>
 		                        <td colspan="2">
 		                            <a class="btn btn-info btn-sm" th:href="@{/funcionarios/editar/{id} (id=${f.id}) }" role="button">
 		                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
